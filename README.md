@@ -12,7 +12,7 @@ Download the content of this repository
      conda env create -f environment.yml
 # 2 - Activate the virtual environment and open Spyder
  - On conda-navigator enter:
-     conda activate myenv
+     conda activate Ikaro
  - Open Spyder (Spyder is a data-science GUI IDE heavily inspired by MATLAB but for Python):
      spyder
 
