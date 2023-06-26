@@ -10,7 +10,7 @@ Download the content of this repository
  - Navigate to where the file 'environment.yml' is
  - Enter:
      conda env create -f environment.yml
-# 2 - Activate the virtual environment and open spyder
+# 2 - Activate the virtual environment and open Spyder
  - On conda-navigator enter:
      conda activate myenv
  - Open Spyder (Spyder is a data-science GUI IDE heavily inspired by MATLAB but for Python):
@@ -22,4 +22,6 @@ Download the content of this repository
 
 - For multiple trials
   Run the 'main_batch.py' routine and select all the trials you want to analyze. 
-  
+
+# 4 - Statistics
+Run the 'final_statistics.py' routine and select the file 'Final_results.h5' generated from the multiple trial analysis.
