@@ -4,7 +4,7 @@ Routines created in Python for Barnes Maze analysis based on DeepLabCut outputs
 # Instructions
 # 0 - Download
 Download the content of this repository
-Click on <Code> and Download Zip
+Click on 'Code' and 'Download Zip'
 ![image](https://github.com/ikaro-beraldo/barnes-maze-python-routines/assets/55361465/8d198073-95b4-49dc-ac6a-e5099ac92a1e)
 
 
