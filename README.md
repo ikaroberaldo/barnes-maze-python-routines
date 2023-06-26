@@ -4,6 +4,9 @@ Routines created in Python for Barnes Maze analysis based on DeepLabCut outputs
 # Instructions
 # 0 - Download
 Download the content of this repository
+![image](https://github.com/ikaro-beraldo/barnes-maze-python-routines/assets/55361465/8d198073-95b4-49dc-ac6a-e5099ac92a1e)
+Click on <Code> and Download Zip
+
 # 1 - Creating a conda-environment
  - Download anaconda (https://www.anaconda.com/)
  - Open the conda-navigator on Windows start
