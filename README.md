@@ -7,6 +7,8 @@ Download the content of this repository
 # 1 - Creating a conda-environment
  - Download anaconda (https://www.anaconda.com/)
  - Open the conda-navigator on Windows start
+ ![image](https://github.com/ikaro-beraldo/barnes-maze-python-routines/assets/55361465/43e0eab0-567f-4abd-92dc-b9596f6a0487)
+
  - Navigate to where the file 'environment.yml' is
  - Enter:
      conda env create -f environment.yml
