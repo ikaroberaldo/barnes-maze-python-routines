@@ -13,12 +13,13 @@ Click on 'Code' and 'Download Zip'
  - Open the conda-navigator on Windows start
  ![image](https://github.com/ikaro-beraldo/barnes-maze-python-routines/assets/55361465/43e0eab0-567f-4abd-92dc-b9596f6a0487)
 
- - Navigate to where the file 'environment.yml' is
+ - Navigate to where the file 'py_routines_behavior.yaml' is
  - Enter:
-     conda env create -f environment.yml
+     conda env create -f py_routines_behavior.yaml
+   
 # 2 - Activate the virtual environment and open Spyder
  - On conda-navigator enter:
-     conda activate Ikaro
+     conda activate py_routines_behavior
  - Open Spyder (Spyder is a data-science GUI IDE heavily inspired by MATLAB but for Python):
      spyder
 
