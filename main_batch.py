@@ -32,6 +32,7 @@ conf_threshold = 0.95
 std_threshold = 0.5
 fps = 30
 prev_hole_position = np.empty((12,2))
+latency_mode = 'scape' # 'scape' or 'find'
 
 # CREATE A DATA FRAME TO ORGANIZE THE RSULTS FOR ALL THE TRIALS
 trial_info = pd.DataFrame(columns=['Box','ID','Group','Day','Trial','Beginning', 'End', 'Latency', 'P_error', 'S_error',
@@ -55,8 +56,7 @@ for it in range(len(filename)):
     maze_info_pixel = maze_recreation(position_each_hole, 10, 5, 60)
     # Recreate the maze quadrants
     quadrant_dict, quadrant_dict_list = maze_quadrants(maze_info_pixel, [], centroid_coords, position_each_hole, plot_frame=False, title='Nose', show=True, recreate_maze=False)
-    
-    
+        
     # STEP 3.1 --> GET THE NOSE COORD AND PROCESS IT
     # Get the coordinates for a specific body part
     nose_coord = df.xs('nose', level='bodyparts', axis=1).to_numpy()  
@@ -69,19 +69,13 @@ for it in range(len(filename)):
     # Define the trial beginning and end based on confidence interval
     body_part_matrix_nose, beg, end = get_trial_beginning_end_all_bp(body_part_matrix_nose, df, 0.95)
     # OLD FUNCTION -->> body_part_matrix_nose = get_trial_beginning_end(body_part_matrix_nose, 0.95)
-    # Get trial latency
-    latency = get_trial_latency(body_part_matrix_nose, fps=30)      
-    
+       
     # STEP 4 --> CREATE A CODE FOR THE NOSE POSITION ON MAZE
     # Get the nose position on the maze
     bp_pos_on_maze = get_bp_position_on_maze(body_part_matrix_nose, position_each_hole, maze_info_pixel, centroid_coords)
     # Filter the nose position
     bp_pos_on_maze_filtered = filter_bp_pos_on_maze(bp_pos_on_maze, method_used='complete', win=fps)
-    
-    # STEP 5 --> GET PRIMARY AND SECUNDARY ERRORS and STRATEGY USED
-    p_errors, s_errors = get_p_s_errors(bp_pos_on_maze_filtered,target=1)[0:2]
-    strategy = get_the_strategy(bp_pos_on_maze_filtered, target=1)
-    
+        
     # STEP 6.1 --> GET THE BODY CENTRE COORD AND PROCESS IT
     # Get the coordinates for a specific body part
     body_centre_coord = df.xs('body_centre', level='bodyparts', axis=1).to_numpy()  
@@ -90,6 +84,18 @@ for it in range(len(filename)):
     
     # UPDATE the beginning and end for the body_centre as well
     body_part_matrix_body_centre, beg, end = get_trial_beginning_end_all_bp(body_part_matrix_body_centre, df, 0.95)
+    
+    # Get trial latency
+    if latency_mode == 'scape':
+        latency = get_trial_latency(body_part_matrix_nose, fps=30)
+    else:
+        latency, body_part_matrix_nose, body_part_matrix_body_centre, bp_pos_on_maze, bp_pos_on_maze_filtered\
+            = get_trial_latency_to_find_scape(body_part_matrix_nose, body_part_matrix_body_centre, bp_pos_on_maze, bp_pos_on_maze_filtered, time_thresh=3, fps=fps, scape_hole=1)
+        
+    
+    # STEP 5 --> GET PRIMARY AND SECUNDARY ERRORS and STRATEGY USED
+    p_errors, s_errors = get_p_s_errors(bp_pos_on_maze_filtered,target=1)[0:2]
+    strategy = get_the_strategy(bp_pos_on_maze_filtered, target=1)
     
     # STEP 7 --> GET THE TOTAL DISTANCE, INSTANT SPEED AND AVERAGE SPEED
     total_distance = get_distance(body_part_matrix_body_centre, maze_info_pixel)[1]
